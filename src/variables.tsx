@@ -17,4 +17,4 @@ export const feedbacksRoutes = [
         breadcrumbName: 'Отзывы пользователей',
         fontFamily: "'Inter','sans-serif'",
     },
-]
+];

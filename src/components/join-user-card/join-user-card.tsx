@@ -1,5 +1,4 @@
 import { CheckCircleFilled, ExclamationCircleOutlined } from '@ant-design/icons';
-import { useState,useEffect } from 'react';
 import { useAppSelector } from '@redux/configure-store';
 import { selectedTraningSelect } from '@redux/slise/select';
 import { Button, Card, Typography } from 'antd';
@@ -10,15 +9,13 @@ import AvatarUser from '@components/avatar/avatar';
 const JoinUserCard = ({ user, index, onChangeHandler, searchValue }) => {
     const selectetTain = useAppSelector(selectedTraningSelect);
     const [name, surname] = user.name?.split(' ') ?? [];
-    const [disableBtn,setDisableBtn] = useState(false)
     const isAccepted = user.status === inviteStaus.accepted;
     const isPending = user.status === inviteStaus.pending;
     const isRejected = user.status === inviteStaus.regected;
 
-
     return (
         <Card
-        data-test-id={`joint-training-cards${index}`}
+            data-test-id={`joint-training-cards${index}`}
             className={style.user_card}
             bodyStyle={{
                 padding: '4px 16px 0 16px',
@@ -61,7 +58,7 @@ const JoinUserCard = ({ user, index, onChangeHandler, searchValue }) => {
                     size='small'
                     type='primary'
                     className={style.create_traning_btn}
-                    disabled={ isRejected ||isAccepted || isPending || disableBtn}
+                    disabled={isRejected || isAccepted || isPending}
                     onClick={() =>
                         onChangeHandler(
                             user,
@@ -71,18 +68,17 @@ const JoinUserCard = ({ user, index, onChangeHandler, searchValue }) => {
                             surname,
                             user.imageSrc,
                             user.id,
-                            setDisableBtn
                         )
                     }
                 >
                     Создать тренировку
                 </Button>
                 <div className={style.trening_status}>
-                  {user?.status && (
+                    {user?.status && (
                         <>
                             <span>
                                 {' '}
-                                { isPending &&  'ожидает подтверждения'}
+                                {isPending && 'ожидает подтверждения'}
                                 {isAccepted && 'запрос одобрен'}
                                 {isRejected && 'запрос отклонен'}{' '}
                             </span>
@@ -92,7 +88,7 @@ const JoinUserCard = ({ user, index, onChangeHandler, searchValue }) => {
                                 <ExclamationCircleOutlined style={{ color: '#8C8C8C' }} />
                             )}
                         </>
-                    )} 
+                    )}
                 </div>
             </div>
         </Card>
@@ -100,4 +96,3 @@ const JoinUserCard = ({ user, index, onChangeHandler, searchValue }) => {
 };
 
 export default JoinUserCard;
-

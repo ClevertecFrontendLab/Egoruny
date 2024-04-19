@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
- 
 }
 
 .title_conteiner {
@@ -27,10 +26,6 @@
     justify-content: space-around;
 }
 
-.my_partners {
-    margin-top: 24px;
-}
-
 .drawer_header {
     display: flex;
     width: 100%;
@@ -44,14 +39,14 @@
 }
 
 .wrapper_drawer {
-margin-top: 24px;
+    margin-top: 24px;
 }
 
 .exercises {
-margin-top: 24px;
-display: flex;
-flex-direction:column;
-gap: 24px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .btn_wrapper {
@@ -65,10 +60,19 @@ gap: 24px;
 }
 
 .add_btn {
-   z-index: 10000;
-    color:#2F54EB;
+    z-index: 10000;
+    color: #2f54eb;
 }
 
 .invite_btn {
-    background: #2F54EB;
+    background: #2f54eb;
+}
+
+@media (max-width: 860px) {
+    .btn_container {
+        flex-direction: column;
+        gap: 16px;
+        max-width: 350px;
+        margin: auto;
+    }
 }

@@ -2,12 +2,11 @@ h4.ant-typography {
     margin-bottom: 0;
     font-size: 20px;
     line-height: 26px;
-    color:#262626;
-} 
+    color: #262626;
+}
 
-
- @media (max-width:360px) {
-  .ant-card-body {
+@media (max-width: 360px) {
+    .ant-card-body {
         padding: 16px;
-           }
- }
+    }
+}

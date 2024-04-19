@@ -7,18 +7,18 @@ import { Path } from '@utils/constans/url';
 import style from './style.module.css';
 
 const CastomTrigger: React.FC = () => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const onClick = () => {
         localStorage.removeItem('jwt');
-        dispatch(removeJwt())
+        dispatch(removeJwt());
         navigate(Path.Login);
     };
 
     return (
         <>
             <div className={style.container}>
-                <img  onClick={onClick} className={style.swither_icons} src={exitIcon} alt='icon' />
+                <img onClick={onClick} className={style.swither_icons} src={exitIcon} alt='icon' />
                 <Button onClick={onClick} type='text'>
                     Выход
                 </Button>

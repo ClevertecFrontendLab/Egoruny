@@ -42,9 +42,18 @@ const FeedbacksContent: React.FC = () => {
                             flexDirection: isHiden ? 'column-reverse' : 'column',
                         }}
                     >
-                        {getAllFeedbacks().map(({id,fullName,imageSrc,createdAt,message,rating}) => (
-                            <UserComment key={id} fullName={fullName} image={imageSrc} message={message} rating={rating} createdAt={createdAt} />
-                        ))}
+                        {getAllFeedbacks().map(
+                            ({ id, fullName, imageSrc, createdAt, message, rating }) => (
+                                <UserComment
+                                    key={id}
+                                    fullName={fullName}
+                                    image={imageSrc}
+                                    message={message}
+                                    rating={rating}
+                                    createdAt={createdAt}
+                                />
+                            ),
+                        )}
                     </div>
                     <Footer className={style.footer_feedbaks}>
                         <Button

@@ -24,6 +24,7 @@ type CalendarExercisesModalProps = {
 };
 
 const CalendarExercisesModal = ({
+    setIsEdit,
     onChangeExercisesDrawerOpen,
     setTreningStatus,
     openDrawer,
@@ -36,9 +37,10 @@ const CalendarExercisesModal = ({
     const selectedTraning = useAppSelector(selectedTraningSelect);
     const catalogTrening = useAppSelector(traningCatalogsSelect);
     const isEmptyExesises = !!selectedTraning?.exercises[0]?.name;
-    const disabledAddTraning = !selectedTraning.name;
-    const disebledExerciseTraning = !selectedTraning?.name || isEmptyExesises;
-  
+    const disableBtn = selectedTraning.exercises.every(({name}) => name)
+
+    const disabledAddTraning = !selectedTraning.name || isEdit === true;
+
     const filter = trainings
         .filter(({ name }) => catalogTrening.find((training) => training?.name === name))
         .map(({ name }) => name);
@@ -49,6 +51,7 @@ const CalendarExercisesModal = ({
         .map((el) => ({ label: el, value: el }));
 
     const onUpdateTraning = () => {
+
         isPastDate
             ? dispatch(updateTraning({ isPast: true }))
             : dispatch(updateTraning({ isPast: false }));
@@ -56,9 +59,12 @@ const CalendarExercisesModal = ({
         dispatch(putUpdateTreningStart());
     };
 
-    const onSaveTraning = () => dispatch(postCreateTreningStart());
+    const onSaveTraning = () => {
+        dispatch(postCreateTreningStart());
+    }
 
     const onChange = (value: string) =>{ 
+        setIsEdit(false)
         dispatch(setPrevState({name: value, date: date.toISOString()}))
         dispatch(setCreateSelectedTraning({ name: value, date: date.toISOString()}));
 }
@@ -79,7 +85,7 @@ const CalendarExercisesModal = ({
                         Добавить упражнения
                     </Button>
                     <Button
-                        disabled={!disebledExerciseTraning}
+                        disabled={!disableBtn}
                         block
                         size='middle'
                         type='link'

@@ -1,11 +1,10 @@
-.auth_wrapper{
+.auth_wrapper {
     max-width: 1440px;
     min-height: 100vh;
     margin: 0 auto;
     background: url(../../../assets/img/Enter_page_light.png);
     background-position: center;
     font-family: 'Inter';
-
 }
 
 .auth_wrapper_blur {
@@ -26,11 +25,11 @@
 }
 
 .form_register_login_button {
-    background-color: #2F54EB;
+    background-color: #2f54eb;
 }
 
-.result{
- padding:64px 32px 56px 32px;  
+.result {
+    padding: 64px 32px 56px 32px;
 }
 
 .container_input {
@@ -43,7 +42,6 @@
     word-wrap: break-word;
     overflow: unset;
     overflow-wrap: break-word;
- 
 }
 
 .charters {
@@ -57,7 +55,6 @@
     align-items: center;
     justify-content: center;
 }
-
 
 .chartersError {
     font-size: 14px;
@@ -77,12 +74,11 @@
     line-height: 130%;
     text-align: center;
     background: white;
-
 }
 
 .selected {
     outline: none;
-    color:#262626;
+    color: #262626;
 }
 
 .extra_text {
@@ -96,7 +92,7 @@
 :global .ant-typography p {
     margin-bottom: 0;
 }
-@media (max-width:360px) {
+@media (max-width: 360px) {
     .error_login_wrpper {
         max-width: 328px;
         margin-left: 16px;

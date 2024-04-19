@@ -11,13 +11,9 @@ import {
     getTreningsError
 } from '@redux/slise/my-trenings-slice';
 
-import { getTraningCatalogsStart } from '@redux/slise/traning-catalogs-slise';
+
 
 import {
-    setSelectedTraning,
-    getTraningListStart,
-    getTraningListSaccses,
-    getTraningListError,
     setUseruserTraningList,
     addTrening,
     resetCreatedTraining,

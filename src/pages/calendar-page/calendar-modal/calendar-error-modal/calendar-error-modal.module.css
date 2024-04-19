@@ -7,8 +7,6 @@
     gap: 16px;
 }
 
-
-
 .modal_header p {
     font-weight: 600;
     font-size: 16px;
@@ -21,7 +19,6 @@
     width: 24px;
 }
 
-
-.modal_footer_btn  {
-    background:#2F54EB;
+.modal_footer_btn {
+    background: #2f54eb;
 }

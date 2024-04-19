@@ -7,7 +7,15 @@ import style from './my-taroff.module.css';
 
 const { Paragraph } = Typography;
 
-const MyTariff = ({ isProRarif, onClick, isActiveProTariff, onClickHadler, month, day,dataTtetId }) => {
+const MyTariff = ({
+    isProRarif,
+    onClick,
+    isActiveProTariff,
+    onClickHadler,
+    month,
+    day,
+    dataTtetId,
+}) => {
     return (
         <>
             <Card
@@ -42,7 +50,12 @@ const MyTariff = ({ isProRarif, onClick, isActiveProTariff, onClickHadler, month
                             до {`${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}`}
                         </Paragraph>
                     ) : (
-                        <Button className={style.active_btn} size='large' onClick={onClick} data-test-id='activate-tariff-btn'>
+                        <Button
+                            className={style.active_btn}
+                            size='large'
+                            onClick={onClick}
+                            data-test-id='activate-tariff-btn'
+                        >
                             Активировать
                         </Button>
                     )}

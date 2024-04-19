@@ -8,7 +8,7 @@
 
 .table-training .ant-table-thead > tr > th:nth-child(1),
 .table-training .ant-table-thead > tr > th:nth-child(3) {
-    background:  #f0f0f0;
+    background: #f0f0f0;
 }
 
 .table-training .ant-table.ant-table-small .ant-table-tbody > tr > td {
@@ -25,21 +25,14 @@
     font-size: 12px;
 }
 
-
-
 .ant-table-thead > tr > th {
     background: #f0f0f0;
     height: 37px;
 }
 
-
-
-
 .ant-table-column-sorters::after {
     height: 37px;
 }
-
-
 
 @media (max-width: 834px) {
     .ant-card-head-title {
@@ -47,10 +40,9 @@
     }
 }
 
-
 @media (max-width: 360px) {
-.ant-card-head-title {
-    max-width: 100%;
-    text-align: center;
-}
+    .ant-card-head-title {
+        max-width: 100%;
+        text-align: center;
+    }
 }

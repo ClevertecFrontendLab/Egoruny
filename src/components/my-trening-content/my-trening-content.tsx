@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Button, Typography, Select, Table, Form } from 'antd';
-import { PlusOutlined, DownOutlined, MinusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@redux/configure-store';
 import { isPastDate } from '@utils/constans/getPastDate';
@@ -44,9 +44,6 @@ import ClanedarNotVarificationModal from '@pages/calendar-page/calendar-modal/ca
 
 import style from './my-trening-content.module.css';
 
-
-
-
 const { Title } = Typography;
 const MyTreningContetnt = ({ catalog, treningList }) => {
     const showCreateAlert = useAppSelector(createMyTreningSuccsessSelect);
@@ -55,7 +52,6 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
     const updateTreningError = useAppSelector(updateMyTreningErrorSelect);
     const selectedTrain = useAppSelector(selectedTraningSelect);
     const pastDate = isPastDate(selectedTrain?.date);
-    const [form] = Form.useForm();
     const options = catalog?.map(({ name, key }) => ({ value: name, lable: key }));
     const [isEdit, setIsEdit] = useState(false);
     const [isCheced, setChecked] = useState(false);
@@ -66,9 +62,10 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
     const desctopVersion = useAppSelector(desctopVersionSelect);
     const repeat = selectedTrain?.parameters?.repeat;
     const period = selectedTrain?.parameters?.period;
-    const disbled = !!selectedTrain?.exercises[0]?.name;
+    const disabledTraningBySelectName = !selectedTrain.name;
+    const disableBtnByExercisesName = !selectedTrain.exercises.every(({ name }) => name !== '');
 
-
+    const disableBtnSaveBtn = disableBtnByExercisesName || disabledTraningBySelectName;
 
     const deleteExercisesHedler = () => {
         dispatch(deleteExercises(indexArray));
@@ -107,6 +104,7 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
             render: (item, record) => {
                 return (
                     <MyTreningsBage
+                        isInplimintation={record.isImplementation}
                         key={record._id}
                         text={item}
                         trein={record}
@@ -119,7 +117,7 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
             title: 'Периодичность',
             dataIndex: '.ant-table-column-sorters::after',
             key: 'period',
-            width: '240px',
+            width: !desctopVersion ? '100px' : '200px',
             render: (_, record, index) => (
                 <Period key={record._id} trein={record} onClickBtn={EditHandler} index={index} />
             ),
@@ -168,18 +166,15 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
         dispatch(getTraningCatalogsStart());
     }, [dispatch]);
 
-
-
-
     return (
-   <>
-     <CastomDrawer
+        <>
+            <CastomDrawer
                 footerContent={
                     <Button
                         className={style.footer_btn}
                         type='primary'
                         block
-                        disabled={!disbled}
+                        disabled={disableBtnSaveBtn}
                         onClick={() => (isEdit ? updateTrening() : createTrening())}
                     >
                         Сохранить
@@ -201,31 +196,31 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
                         placeholder='Выбор типа тренировки'
                         defaultValue={selectedTrain.name ? selectedTrain.name : null}
                     />
-                    <Form form={form}>
-                        <CreateDateTraning
-                            defultPeriodValue={period}
-                            defaultDateValue={selectedTrain?.date}
-                            isCheced={repeat}
-                            checkBoxHadler={checkBoxHadler}
-                            onChangeDate={onChangeDate}
-                            onChangePeriod={onChangePeriod}
-                        />
-                        {selectedTrain.exercises?.map(
-                            ({ name, approaches, weight, replays }, index) => (
-                                <DrawerInput
-                                    indexArray={indexArray}
-                                    checkBoxHadler={onSetIndexes}
-                                    key={index}
-                                    name={name}
-                                    index={index}
-                                    isEdit={isEdit}
-                                    defaultValueApproaches={approaches}
-                                    defaultValueWeight={weight}
-                                    defaultValueReplays={replays}
-                                />
-                            ),
-                        )}
-                    </Form>
+
+                    <CreateDateTraning
+                        defultPeriodValue={period}
+                        defaultDateValue={selectedTrain?.date}
+                        isCheced={repeat}
+                        checkBoxHadler={checkBoxHadler}
+                        onChangeDate={onChangeDate}
+                        onChangePeriod={onChangePeriod}
+                    />
+                    {selectedTrain.exercises?.map(
+                        ({ name, approaches, weight, replays }, index) => (
+                            <DrawerInput
+                                indexArray={indexArray}
+                                checkBoxHadler={onSetIndexes}
+                                key={index}
+                                name={name}
+                                index={index}
+                                isEdit={isEdit}
+                                defaultValueApproaches={approaches}
+                                defaultValueWeight={weight}
+                                defaultValueReplays={replays}
+                            />
+                        ),
+                    )}
+
                     <div className={style.btn_wrapper}>
                         <Button
                             className={style.add_btn}
@@ -252,77 +247,79 @@ const MyTreningContetnt = ({ catalog, treningList }) => {
             </CastomDrawer>
             {!treningList.length ? (
                 <>
-                <div className={style.wrapper_empty}>
-                    <div className={style.empty_treningList}>
-                        <Title level={3} style={{ fontWeight: 500 }}>
-                            У вас ещё нет созданных тренировок
-                        </Title>
-                        <div className={style.create_trening_btn}>
-                            <Button
-                                // data-test-id='create-new-training-button'
-                                className={style.empty_catalog_btn}
-                                size='large'
-                                onClick={openDrawer}
-                            >
-                                Создать тренировку
-                            </Button>
+                    <div className={style.wrapper_empty}>
+                        <div className={style.empty_treningList}>
+                            <Title level={3} style={{ fontWeight: 500 }}>
+                                У вас ещё нет созданных тренировок
+                            </Title>
+                            <div className={style.create_trening_btn}>
+                                <Button
+                                    className={style.empty_catalog_btn}
+                                    size='large'
+                                    onClick={openDrawer}
+                                >
+                                    Создать тренировку
+                                </Button>
+                            </div>
                         </div>
+
+                        <div className={style.trening_list_wrapper}></div>
+                    </div>
+                </>
+            ) : (
+                <>
+                    <div className={style.wrapper_fill}>
+                        <div className={style.content}>
+                            <Table
+                                data-test-id='my-trainings-table'
+                                className={style.table}
+                                dataSource={treningList}
+                                columns={columns}
+                                showSorterTooltip={false}
+                                size='small'
+                                pagination={{
+                                    size: 'small',
+                                    defaultCurrent: 1,
+                                    position: ['bottomLeft'],
+                                    hideOnSinglePage: true,
+                                }}
+                            />
+                        </div>
+                        <Button
+                            data-test-id='create-new-training-button'
+                            onClick={openDrawer}
+                            className={style.new_trin_btn}
+                            type='primary'
+                            size='large'
+                            icon={<PlusOutlined />}
+                        >
+                            Новая Тренировка
+                        </Button>
                     </div>
 
-                    <div className={style.trening_list_wrapper}></div>
-                </div>
-            </>
-            ):
-            <>
-            <div className={style.wrapper_fill}>
-            <div className={style.content}>
-                <Table
-                    data-test-id='my-trainings-table'
-                    className={style.table}
-                    dataSource={treningList}
-                    columns={columns}
-                    showSorterTooltip={false}
-                    size='small'
-                    pagination={{
-                        size: 'small',
-                        defaultCurrent: 1,
-                        position: ['bottomLeft'],
-                        hideOnSinglePage: true,
-                    }}
-                />
-            </div>
-            <Button
-                data-test-id='create-new-training-button'
-                onClick={openDrawer}
-                className={style.new_trin_btn}
-                type='primary'
-                size='large'
-                icon={<PlusOutlined />}
-            >
-                Новая Тренировка
-            </Button>
-        </div>
-        
-        {showCreateAlert && (
-            <CastomAlert
-                dataTest={'create-training-success-alert'}
-                message='Новая тренировка успешно добавлена'
-                onClose={closeCreateALertHandler}
-            />
-        )}
-        {showUpdateAlert && (
-            <CastomAlert
-            dataTest='create-training-success-alert'
-                message='Тренировка успешно обновлена'
-                onClose={closeUpdateAlertHandler}
-            />
-        )}
-        {createTreningError && <ClanedarNotVarificationModal onClose={closeCreateModal} />}
-        {updateTreningError && <ClanedarNotVarificationModal onClose={closeUpdateModal} />}
+                    {showCreateAlert && (
+                        <CastomAlert
+                            dataTest={'create-training-success-alert'}
+                            message='Новая тренировка успешно добавлена'
+                            onClose={closeCreateALertHandler}
+                        />
+                    )}
+                    {showUpdateAlert && (
+                        <CastomAlert
+                            dataTest='create-training-success-alert'
+                            message='Тренировка успешно обновлена'
+                            onClose={closeUpdateAlertHandler}
+                        />
+                    )}
+                    {createTreningError && (
+                        <ClanedarNotVarificationModal onClose={closeCreateModal} />
+                    )}
+                    {updateTreningError && (
+                        <ClanedarNotVarificationModal onClose={closeUpdateModal} />
+                    )}
+                </>
+            )}
         </>
-        }
-           
-           </>
     );
 };
 

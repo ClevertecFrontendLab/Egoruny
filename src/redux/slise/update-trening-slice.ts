@@ -16,9 +16,9 @@ const updateTraningSlise = createSlice({
         putUpdateTreningSaccses(state) {
             state.isUpdateTraningLoad = false;
         },
-        putUpdateTreningError(state) {
+        putUpdateTreningError(state, action) {
             state.isUpdateTraningLoad = false;
-            state.UpdateTraningError = true;
+            state.UpdateTraningError = action.payload;
         },
     },
 });

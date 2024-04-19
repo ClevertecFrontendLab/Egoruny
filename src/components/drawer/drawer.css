@@ -24,7 +24,8 @@
     width: 100%;
     padding: 12px 32px;
 }
-div.ant-typography, .ant-typography p {
+div.ant-typography,
+.ant-typography p {
     margin-bottom: 0;
 }
 

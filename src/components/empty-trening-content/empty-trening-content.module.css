@@ -1,0 +1,24 @@
+.emty_content_wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.empty_content {
+    max-width: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty_content > figure {
+    height: 200px;
+    width: 175px;
+}
+
+.title {
+    text-align: center;
+}

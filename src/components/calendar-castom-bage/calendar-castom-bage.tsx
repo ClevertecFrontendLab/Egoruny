@@ -12,7 +12,7 @@ type BageProps = {
     index?: number;
     onChange?: () => void;
     isImplementation?: boolean;
-    openedInDrawer?:boolean
+    openedInDrawer?: boolean;
 };
 
 const CalendarCastomBage = ({
@@ -22,10 +22,8 @@ const CalendarCastomBage = ({
     onChange,
     isExecises,
     isImplementation,
-    openedInDrawer
+    openedInDrawer,
 }: BageProps) => {
- 
-
     return (
         <>
             <div className={style.bage_wrapper}>
@@ -33,7 +31,7 @@ const CalendarCastomBage = ({
                     <Text type='secondary'>{text}</Text>
                 ) : (
                     <Badge
-                        style={{ color:isImplementation || openedInDrawer?'#BFBFBF':'' }}
+                        style={{ color: isImplementation || openedInDrawer ? '#BFBFBF' : '' }}
                         color={bageColors.get(text)}
                         text={text}
                     />

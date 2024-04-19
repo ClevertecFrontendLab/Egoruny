@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+}
+.workload {
+    width: 100%;
+    display: flex;
+}
+
+.chart {
+    max-width: 520px;
+}
+
+.pie_container {
+    display: flex;
+}
+
+.week_list {
+    max-width: 300px;
+    margin: auto;
+}
+
+.month_list {
+    display: flex;
+    max-width: 900px;
+}
+
+@media (max-width: 1024px) {
+    .workload {
+        flex-direction: column;
+    }
+
+    .week_list {
+        margin: 0;
+    }
+
+    .pie_container {
+        flex-direction: column;
+    }
+}

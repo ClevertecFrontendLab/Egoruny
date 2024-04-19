@@ -34,7 +34,6 @@ import {
     setPeriod,
     setCreateSelectedTraning,
     setRepeat,
-    setSelectedTraning,
     resetCreatedTraining,
 } from '@redux/slise/traningList-slise';
 import { bageColors } from '@utils/constans/bageColors';
@@ -53,7 +52,7 @@ const JoinTrening = () => {
     const [surName, setsurName] = useState('');
     const [src, setSrc] = useState('');
     const [isopenDrawer, setOpenDrawer] = useState(false);
-    const [isRandomUsers,setIsrandomUsers] = useState(false)
+    const [isRandomUsers, setIsrandomUsers] = useState(false);
     const [indexArray, setIndexeArray] = useState<number[]>([]);
 
     const [id, setId] = useState('');
@@ -63,20 +62,20 @@ const JoinTrening = () => {
     const repeat = selectetTain?.parameters?.repeat;
     const period = selectetTain?.parameters?.period;
     const treningType = findTrainType(treningList, treningCatalog);
-    const disbled = !!selectetTain?.exercises[0]?.name;
+    const disableSendBtn = selectetTain.exercises.every(({ name }) => name !== '');
 
     useEffect(() => {
         dispatch(getTreningPartnerStart());
     }, [dispatch]);
 
     const getJoinUserHandler = () => {
-        setIsrandomUsers(true)
+        setIsrandomUsers(true);
         dispatch(setTraningType(false));
         dispatch(getJoinUsersStart());
     };
 
     const getJoinUserTreningTypeHandler = () => {
-        setIsrandomUsers(false)
+        setIsrandomUsers(false);
         dispatch(setTraningType(treningType));
         dispatch(getJoinUsersStart());
     };
@@ -97,8 +96,7 @@ const JoinTrening = () => {
     const onChangeDate = (date) =>
         dispatch(setCreateSelectedTraning({ ...selectetTain, date: date?.toISOString() }));
 
-    const OpenDrawerHandler = (user, trningName, trening, userName, userSurname, UserSrc, id,setdisable) => {
-        setdisable(true)
+    const OpenDrawerHandler = (user, trningName, trening, userName, userSurname, UserSrc, id) => {
         dispatch(setCreateSelectedTraning({ ...trening, name: trningName }));
         setOpenDrawer(true);
         setName(userName);
@@ -106,8 +104,8 @@ const JoinTrening = () => {
         setSrc(UserSrc);
         setId(id);
         setUser(user);
-    };    const postInvate = () => {
-
+    };
+    const postInvate = () => {
         setOpenDrawer(false);
         dispatch(setUserId(user.id));
         dispatch(postInviteStart());
@@ -126,14 +124,14 @@ const JoinTrening = () => {
     if (isShowJoinUsersContent) {
         return (
             <>
-                <JoinUsersContent userList={userList} onChangeHandler={OpenDrawerHandler}/>
+                <JoinUsersContent userList={userList} onChangeHandler={OpenDrawerHandler} />
                 <CastomDrawer
                     onClose={closeDrawer}
                     open={isopenDrawer}
                     title={'Совместная тренировка'}
                     footerContent={
                         <Button
-                            disabled={!disbled}
+                            disabled={!disableSendBtn}
                             type='primary'
                             block
                             onClick={postInvate}
@@ -143,9 +141,6 @@ const JoinTrening = () => {
                         </Button>
                     }
                 >
-
-
-
                     <div className={style.drawer_header}>
                         <div className={style.user_info}>
                             <AvatarUser
@@ -187,7 +182,6 @@ const JoinTrening = () => {
                         </div>
                         <div className={style.btn_wrapper}>
                             <Button
-                            
                                 className={style.add_btn}
                                 type='text'
                                 icon={<PlusOutlined />}
@@ -214,7 +208,13 @@ const JoinTrening = () => {
 
     return (
         <div className={style.wrapper}>
-            {showErrorModal && <CalendarModal updateHandler={isRandomUsers?getJoinUserHandler:getJoinUserTreningTypeHandler}/>}
+            {showErrorModal && (
+                <CalendarModal
+                    updateHandler={
+                        isRandomUsers ? getJoinUserHandler : getJoinUserTreningTypeHandler
+                    }
+                />
+            )}
             {showInvites && <JointTraningRequests invateList={inviteList} />}
             <div className={style.title_conteiner}>
                 <div className={style.title}>
@@ -239,7 +239,7 @@ const JoinTrening = () => {
                 <Button type='link' onClick={getJoinUserHandler}>
                     Случайный выбор
                 </Button>
-                <Button type='text' onClick={getJoinUserTreningTypeHandler}>
+                <Button type='text' block={false} onClick={getJoinUserTreningTypeHandler}>
                     Выбор друга по моим тренировкам{' '}
                 </Button>
             </div>

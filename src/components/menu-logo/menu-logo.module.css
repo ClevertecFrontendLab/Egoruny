@@ -1,39 +1,38 @@
 .Logo {
-   display: flex;
-   justify-content: center;
-   margin-top: 30px;
-   margin-bottom: 50px;
-   }
-   
-   .Logo img {
-      max-width: 133px;
-      height: 100%;
-      object-fit: cover;
-   }
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
 
-   .logo_auth {
-max-width: 309px;
-display: flex;
-flex-direction: column;
-   }
+.Logo img {
+    max-width: 133px;
+    height: 100%;
+    object-fit: cover;
+}
 
-   .logo_auth img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-   }
+.logo_auth {
+    max-width: 309px;
+    display: flex;
+    flex-direction: column;
+}
 
-@media(max-width:360px) {
-   .Logo {
-      margin-bottom: 32px;
-      margin-top: 17px;
+.logo_auth img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-   }
-   .Logo img {
-      max-width: 72px;
-   }
+@media (max-width: 360px) {
+    .Logo {
+        margin-bottom: 32px;
+        margin-top: 17px;
+    }
+    .Logo img {
+        max-width: 72px;
+    }
 
-   .logo_auth {
-      max-width: 203px;
-   }
+    .logo_auth {
+        max-width: 203px;
+    }
 }

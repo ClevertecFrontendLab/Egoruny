@@ -11,24 +11,23 @@ import style from './invite-user-card.module.css';
 const { Title, Text } = Typography;
 
 const InviteUserCard = ({ user }) => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const [showModal, setShowModal] = useState(false);
 
-    const openModal = () => setShowModal(true)
-    const closeModal = () => setShowModal(false)
-
+    const openModal = () => setShowModal(true);
+    const closeModal = () => setShowModal(false);
 
     const acceptSendHandler = () => {
         const id = user?._id;
         const status = 'accepted';
         dispatch(putSendRequestStart({ id, status }));
-    }
+    };
 
-    const rejectedSendHandler= () => {
+    const rejectedSendHandler = () => {
         const id = user?._id;
         const status = 'rejected';
         dispatch(putSendRequestStart({ id, status }));
-    }
+    };
 
     return (
         <div className={style.container_user}>
@@ -52,7 +51,11 @@ const InviteUserCard = ({ user }) => {
                     </Title>
                 </div>
                 <div className={style.user_info}>
-                    <Button className={style.show_detalis_trening_btn} type='link' onClick={openModal}>
+                    <Button
+                        className={style.show_detalis_trening_btn}
+                        type='link'
+                        onClick={openModal}
+                    >
                         Посмотреть детали тренировки
                     </Button>
                     {showModal && (
@@ -67,10 +70,17 @@ const InviteUserCard = ({ user }) => {
                 </div>
             </div>
             <div className={style.btn_wrapper}>
-                <Button className={style.trein_together} type='primary' size='large' onClick={acceptSendHandler}>
+                <Button
+                    className={style.trein_together}
+                    type='primary'
+                    size='large'
+                    onClick={acceptSendHandler}
+                >
                     Тренироваться вместе
                 </Button>
-                <Button size='large' onClick={rejectedSendHandler}>Отклонить запрос</Button>
+                <Button size='large' onClick={rejectedSendHandler}>
+                    Отклонить запрос
+                </Button>
             </div>
         </div>
     );

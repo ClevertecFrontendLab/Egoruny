@@ -1,42 +1,42 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-
-
 const initialState = {
-    isUpdateMyTreningLoad:false,
-    isUpdateMyTreningSuccess:false,
-    isUpdateMyTreningError:false,
-
-}
-
+    isUpdateMyTreningLoad: false,
+    isUpdateMyTreningSuccess: false,
+    isUpdateMyTreningError: false,
+};
 
 const updateMyTreningSlice = createSlice({
-    name:'updateMyTrening',
+    name: 'updateMyTrening',
     initialState,
-    reducers:{
+    reducers: {
         putUpdateMyTraningStart(state) {
             state.isUpdateMyTreningError = false;
             state.isUpdateMyTreningLoad = true;
         },
         putUpdateMyTraningSuccess(state) {
             state.isUpdateMyTreningLoad = false;
-            state.isUpdateMyTreningSuccess = true
+            state.isUpdateMyTreningSuccess = true;
         },
         putUpdateMyTraningError(state) {
             state.isUpdateMyTreningLoad = false;
             state.isUpdateMyTreningError = true;
         },
         closeUpdateAlert(state) {
-            state.isUpdateMyTreningSuccess = false
-        }
-        ,
+            state.isUpdateMyTreningSuccess = false;
+        },
         updateError(state) {
-            state.isUpdateMyTreningError = false
-        }
-    }
-})
+            state.isUpdateMyTreningError = false;
+        },
+    },
+});
 
-export const {putUpdateMyTraningStart,putUpdateMyTraningSuccess,putUpdateMyTraningError,closeUpdateAlert,updateError} = updateMyTreningSlice.actions
+export const {
+    putUpdateMyTraningStart,
+    putUpdateMyTraningSuccess,
+    putUpdateMyTraningError,
+    closeUpdateAlert,
+    updateError,
+} = updateMyTreningSlice.actions;
 
-export default updateMyTreningSlice.reducer
+export default updateMyTreningSlice.reducer;

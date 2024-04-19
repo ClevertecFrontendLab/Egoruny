@@ -38,7 +38,6 @@
     color: white;
 }
 
-
 @media (max-width: 430px) {
     .wrapper {
         display: flex;
@@ -48,6 +47,5 @@
     .privacy_information {
         display: flex;
         flex-direction: column-reverse;
-
     }
 }

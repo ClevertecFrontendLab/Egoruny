@@ -18,16 +18,14 @@ const traningCatalogsSlise = createSlice({
             state.istraningCatalogsLoad = false;
             state.traningCatalogs = action.payload;
         },
-        getTraningCatalogsError (state) {
+        getTraningCatalogsError(state) {
             state.istraningCatalogsLoad = false;
-            state.traningCatalogsError = true
-        }
+            state.traningCatalogsError = true;
+        },
     },
 });
 
+export const { getTraningCatalogsStart, getTraningCatalogsSaccses, getTraningCatalogsError } =
+    traningCatalogsSlise.actions;
 
-
-export const {getTraningCatalogsStart,getTraningCatalogsSaccses,getTraningCatalogsError} = traningCatalogsSlise.actions
-
-
-export default traningCatalogsSlise.reducer
+export default traningCatalogsSlise.reducer;

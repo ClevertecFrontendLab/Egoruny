@@ -1,9 +1,8 @@
-import { Card, Typography, Modal,Button } from 'antd';
-import { CheckCircleFilled, ExclamationCircleOutlined} from '@ant-design/icons';
+import { Card, Typography, Modal, Button } from 'antd';
+import { CheckCircleFilled, ExclamationCircleOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { deleteCansleTraningStart } from '@redux/slise/cansle-trening-slise';
 import { useAppDispatch } from '@redux/configure-store';
-import { setTreningPartners } from '@redux/slise/join-trening-slice';
 
 import AvatarUser from '@components/avatar/avatar';
 
@@ -15,13 +14,11 @@ type MyPartnersCardProps = {
     teningType: string;
     avgWeightInWeek: number;
     isActiveModal?: boolean;
-    id:string
-    index:number
-    inviteList:[]
+    id: string;
+    index: number;
 };
 
 const MyPartnersCard = ({
-    inviteList,
     name,
     src,
     teningType,
@@ -29,11 +26,8 @@ const MyPartnersCard = ({
     isActiveModal,
     id,
     index,
-    myTreningPartners,
-    userID,
-    filteAr
 }: MyPartnersCardProps) => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const [isOpen, setOpen] = useState(false);
     const [Username, surname] = name?.split(' ') ?? [];
 
@@ -41,13 +35,10 @@ const MyPartnersCard = ({
 
     const closeModal = () => setOpen(false);
 
-    const cansleTreningHandler =() => {
-        dispatch(setTreningPartners([]))
-         setOpen(false)
-        dispatch(deleteCansleTraningStart({id}))
-
-    }
-
+    const cansleTreningHandler = () => {
+        setOpen(false);
+        dispatch(deleteCansleTraningStart({ id }));
+    };
 
     return (
         <>
@@ -118,28 +109,28 @@ const MyPartnersCard = ({
                                 </Typography.Paragraph>
                             </div>
                             <div className={style.trening_type_modal}>
-                            <Typography.Paragraph type='secondary'>
-                                {' '}
-                                Средняя нагрузка:
-                            </Typography.Paragraph>
-                            <Typography.Paragraph style={{ color: '#2F54EB' }}>
-                                {' '}
-                                {avgWeightInWeek} кг/нед
-                            </Typography.Paragraph>
-                        </div>
+                                <Typography.Paragraph type='secondary'>
+                                    {' '}
+                                    Средняя нагрузка:
+                                </Typography.Paragraph>
+                                <Typography.Paragraph style={{ color: '#2F54EB' }}>
+                                    {' '}
+                                    {avgWeightInWeek} кг/нед
+                                </Typography.Paragraph>
+                            </div>
                         </div>
                     </div>
                     <div className={style.modal_footer}>
-                            <div className={style.accepted_trenig_modal}>
-                                <div className={style.text}>
-                                    тренировка одобрена
-                                </div>
-                                <div className={style.icon}>
-                                <CheckCircleFilled style={{color:'#52C41A'}}/>
-                                </div>
+                        <div className={style.accepted_trenig_modal}>
+                            <div className={style.text}>тренировка одобрена</div>
+                            <div className={style.icon}>
+                                <CheckCircleFilled style={{ color: '#52C41A' }} />
                             </div>
-                            <Button onClick={cansleTreningHandler}>Отменить тренировку</Button>
-                            </div>
+                        </div>
+                        <Button onClick={cansleTreningHandler} className={style.reject_btn}>
+                            Отменить тренировку
+                        </Button>
+                    </div>
                 </div>
             </Modal>
         </>

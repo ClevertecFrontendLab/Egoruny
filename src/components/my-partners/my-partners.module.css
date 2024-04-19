@@ -1,8 +1,19 @@
+.my_partners {
+    margin-top: 24px;
+}
+
 .title {
     margin-bottom: 10px;
 }
 
 .partners {
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
+}
+
+@media (max-width: 480px) {
+    .partners {
+        flex-direction: column;
+    }
 }

@@ -1,0 +1,33 @@
+.tening_type {
+    display: flex;
+    gap: 24px;
+    padding: 16px 0;
+}
+
+.title {
+    white-space: nowrap;
+}
+
+.activeTag {
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+    border: 1px solid #adc6ff;
+    background: #f0f5ffff;
+    color: #2f54ebff;
+}
+
+.defult_tag {
+    border: 1px solid #f0f0f0;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+}
+
+:global .ant-tag {
+    cursor: pointer;
+}

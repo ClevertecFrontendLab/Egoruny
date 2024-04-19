@@ -6,6 +6,9 @@ import { Path } from '../../../utils/constans/url';
 import MenuLogo from '@components/menu-logo/menu-logo';
 import SingIn from '../sing-in/sing-in';
 import Registration from './registration/registration';
+import Load from '../../../components/loader/loader';
+import { useAppSelector } from '@redux/configure-store';
+import { isLogedSelect } from '@redux/slise/select';
 
 type AuthTab = (typeof AuthTab)[keyof typeof AuthTab];
 
@@ -16,7 +19,7 @@ const AuthTab = {
 
 const Auth = ({ tab = 'login' }: { tab?: AuthTab }) => {
     const navigate = useNavigate();
-
+    const isLoged = useAppSelector(isLogedSelect)
     const jwt = localStorage.getItem('jwt');
 
     useEffect(() => {
@@ -41,7 +44,9 @@ const Auth = ({ tab = 'login' }: { tab?: AuthTab }) => {
 
     return (
         <>
+
             <div className={style.modal_wrapper}>
+            {isLoged && <Load />}
                 <div className={style.modal_wrapper_blur}>
                     <div className={style.modal_wrapper_blur_container}>
                         <MenuLogo className />

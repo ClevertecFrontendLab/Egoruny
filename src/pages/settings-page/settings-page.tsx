@@ -39,10 +39,6 @@ const SettingsPage = () => {
     const month = date.month() + 1;
     const day = date.date();
 
-   
-
-
-
     const openDrawer = () => {
         setOpenDrawer(true);
     };

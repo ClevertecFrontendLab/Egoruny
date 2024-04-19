@@ -1,18 +1,14 @@
-
 import { Alert } from 'antd';
-import style from './castom-alert.module.css'
-
+import style from './castom-alert.module.css';
 
 type Props = {
     message: string;
-    onClose?:() => void
-    dataTest?:string
+    onClose?: () => void;
+    dataTest?: string;
 };
 
-const CastomAlert = ({ message,onClose,dataTest }: Props) => (
-    <div 
-    className={style.alert_wrapper}
-    >
+const CastomAlert = ({ message, onClose, dataTest }: Props) => (
+    <div className={style.alert_wrapper}>
         <Alert
             onClose={onClose}
             data-test-id={dataTest}

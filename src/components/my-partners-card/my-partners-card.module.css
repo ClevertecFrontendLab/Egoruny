@@ -7,7 +7,6 @@
     gap: 8px;
 }
 
-
 .trening_type {
     display: flex;
     gap: 16px;
@@ -20,9 +19,9 @@
 }
 
 .modal_header {
-display: flex;
-justify-content: space-between;
-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .avatar_modal {
@@ -37,7 +36,6 @@ width: 100%;
     margin-top: 24px;
 }
 
-
 .accepted_trenig_modal {
     display: flex;
     align-items: center;
@@ -45,11 +43,26 @@ width: 100%;
 }
 
 .text {
-color: #262626;
-font-family: 'Inter';
-font-size: 12px;
-font-weight: 400;
-line-height: 15.6px;
-text-align: left;
+    color: #262626;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15.6px;
+    text-align: left;
+}
 
+@media (max-width: 480px) {
+    .modal_header {
+        flex-direction: column;
+    }
+
+    .modal_footer {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .reject_btn {
+        width: 100%;
+    }
 }

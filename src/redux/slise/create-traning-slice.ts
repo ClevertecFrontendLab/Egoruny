@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
 const initialState = {
     isLoad: false,
     error: false,
@@ -17,16 +16,14 @@ const createTreningSlice = createSlice({
         postCreateTreningSuccess(state) {
             state.isLoad = false;
         },
-        postCreateTreningError(state) {
-            state.isLoad = false
-            state.error = true
+        postCreateTreningError(state, action) {
+            state.isLoad = false;
+            state.error = action.payload;
         },
-    
     },
 });
 
+export const { postCreateTreningStart, postCreateTreningSuccess, postCreateTreningError } =
+    createTreningSlice.actions;
 
-export const {postCreateTreningStart,postCreateTreningSuccess,postCreateTreningError} = createTreningSlice.actions
-
-
-export default createTreningSlice.reducer
+export default createTreningSlice.reducer;

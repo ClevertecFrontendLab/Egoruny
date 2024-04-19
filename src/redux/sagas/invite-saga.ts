@@ -1,12 +1,9 @@
 import { instance } from '../../axios/axsios';
 import { AxiosPaths } from '../../axios/axiosPaths';
 
-import { Path } from '../../utils/constans/url';
-import { push } from 'redux-first-history';
 import {
     jwtSelect,
     selectedTraningSelect,
-    joinUsersContentSelect,
     treningIdSelect,
     userIdSelect,
 } from '@redux/slise/select';
@@ -15,7 +12,6 @@ import {
     postInviteStart,
     postInviteSuccess,
     postInviteError,
-    postCreateJoinTraningStart,
     setTreningId,
 } from '@redux/slise/invite-slice';
 import {
@@ -24,18 +20,20 @@ import {
     getJoinTeningRequestsStart,
 } from '@redux/slise/join-tening-requests-slice';
 
-import { getJoinUsersStart,setjoingUsers } from '@redux/slise/join-trening-slice';
+import { getJoinUsersStart  } from '@redux/slise/join-trening-slice';
 
 import {
     putSendRequestStart,
     putSendRequestSuccess,
     putSendRequestError,
-    setShowMypartner
+    setShowMypartner,
 } from '@redux/slise/send-request-slice';
 
-import { deleteCansleTraningStart,deleteCansleTraningSuccess,deleteCansleTraningError } from '@redux/slise/cansle-trening-slise';
-
-
+import {
+    deleteCansleTraningStart,
+    deleteCansleTraningSuccess,
+    deleteCansleTraningError,
+} from '@redux/slise/cansle-trening-slise';
 
 import { getTreningPartnerStart } from '@redux/slise/join-trening-slice';
 
@@ -60,24 +58,20 @@ function* postInviteWorker() {
         Authorization: `Bearer ${jwt}`,
     };
 
-   
-
     try {
         const { data } = yield call(instance.post, AxiosPaths.TRANING, body, { headers });
         yield put(setTreningId(data._id));
         const userId: string = yield select(userIdSelect);
         const treningID: string = yield select(treningIdSelect);
- yield call(
+        yield call(
             instance.post,
             AxiosPaths.INVITE,
             { to: userId, trainingId: treningID },
             { headers },
         );
 
-
         yield put(postInviteSuccess());
         yield put(getJoinUsersStart());
-
     } catch (error) {
         yield put(postInviteError(true));
     }
@@ -89,12 +83,12 @@ function* putSendReqestWorker({ payload: { id, status } }) {
         Authorization: `Bearer ${jwt}`,
     };
     try {
-        const {data }=yield call(instance.put, AxiosPaths.INVITE, { id, status }, { headers });
+        const { data } = yield call(instance.put, AxiosPaths.INVITE, { id, status }, { headers });
         yield put(putSendRequestSuccess());
 
-        if(status === 'accepted'){
+        if (status === 'accepted') {
             yield put(setShowMypartner(true));
- 
+
             yield put(getTreningPartnerStart());
         }
         yield put(getJoinTeningRequestsStart());
@@ -104,19 +98,19 @@ function* putSendReqestWorker({ payload: { id, status } }) {
     }
 }
 
-function* deleteJoinTraningWorker({payload:{id}}) {
+function* deleteJoinTraningWorker({ payload: { id } }) {
     const jwt: string = yield select(jwtSelect);
     const headers = {
         Authorization: `Bearer ${jwt}`,
     };
     try {
-        const {data} = yield call(instance.delete, `${AxiosPaths.INVITE}/${id}`,  { headers });
-        yield put(deleteCansleTraningSuccess())
+        const { data } = yield call(instance.delete, `${AxiosPaths.INVITE}/${id}`, { headers });
+        yield put(deleteCansleTraningSuccess());
         yield put(setShowMypartner(false));
-        // yield put(getTreningPartnerStart());
-        // yield put(getJoinTeningRequestsStart());
+        yield put(getTreningPartnerStart());
+        yield put(getJoinTeningRequestsStart());
     } catch (error) {
-yield put(deleteCansleTraningError())
+        yield put(deleteCansleTraningError());
     }
 }
 

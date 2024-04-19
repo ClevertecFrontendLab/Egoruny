@@ -29,7 +29,11 @@ const postFeedbacSlice = createSlice({
     },
 });
 
-export const { postFeedbacksStart, postFeedbacksSaccses, postFeedbacksError,postFeedbacksSettingsStart } =
-    postFeedbacSlice.actions;
+export const {
+    postFeedbacksStart,
+    postFeedbacksSaccses,
+    postFeedbacksError,
+    postFeedbacksSettingsStart,
+} = postFeedbacSlice.actions;
 
 export default postFeedbacSlice.reducer;

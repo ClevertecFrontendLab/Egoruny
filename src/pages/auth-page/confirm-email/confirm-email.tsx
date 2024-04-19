@@ -3,6 +3,7 @@ import { postConfirmEmailStart } from '@redux/slise/auth-slise';
 import VerificationInput from 'react-verification-input';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/configure-store';
+import { isLogedSelect } from '@redux/slise/select';
 import Load from '../../../components/loader/loader';
 
 import style from './confirm-email.module.css';
@@ -25,10 +26,13 @@ const flexTitle = {
 };
 
 const ConfirmEmail = () => {
+    const isLoged = useAppSelector(isLogedSelect);
     const [value, setValue] = useState<string>('');
-    const error = useAppSelector((state) => state.app.error);
-    const email = useAppSelector((state) => state.app.user.login);
+    const error = useAppSelector((state) => state?.auth?.error);
+    const email = useAppSelector((state) => state?.auth?.user?.login);
     const dispatch = useAppDispatch();
+
+   
 
     const onComplete = (code: any) => {
         dispatch(postConfirmEmailStart({ code, email }));
@@ -37,7 +41,7 @@ const ConfirmEmail = () => {
 
     return (
         <div className={style.auth_wrapper}>
-            <Load />
+            {isLoged && <Load />}
             <div className={style.auth_wrapper_blur}>
                 <Layout className={style.error_login_wrpper}>
                     <Result

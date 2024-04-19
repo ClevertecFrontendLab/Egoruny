@@ -18,13 +18,14 @@ import {
     getTariffsStart,
     getTariffsSuccces,
     postTarifStart,
+    postTarifError,
     setTarifId,
     postTarifSuccess,
 } from '@redux/slise/tariff-slice';
 
 function* getUserWorker() {
     const jwt: boolean | string = yield select(jwtSelect);
-    const localStorageJwt:string = yield localStorage.getItem('jwt');
+    const localStorageJwt: string = yield localStorage.getItem('jwt');
     const headers = {
         Authorization: `Bearer ${jwt || localStorageJwt}`,
     };
@@ -32,7 +33,7 @@ function* getUserWorker() {
         const { data } = yield call(instance.get, AxiosPaths.CURRENT_USER, { headers });
         yield put(setProfile(data));
     } catch (error) {
-        yield put(push(Path.Login));
+        // yield put(push(Path.Login));
     }
 }
 function* putUserWorker({ payload: body }) {
@@ -43,9 +44,9 @@ function* putUserWorker({ payload: body }) {
     try {
         const { data } = yield call(instance.put, AxiosPaths.USER, { ...body }, { headers });
         yield put(setProfile(data));
-        yield put(putProfileSaccses());
+        yield put(putProfileSaccses(true));
     } catch (error) {
-        yield put(putProfileError());
+        yield put(putProfileError(true));
     }
 }
 
@@ -74,7 +75,7 @@ function* postTarifWorker() {
         yield call(instance.post, AxiosPaths.TARIFF, { ...body }, { headers });
         yield put(postTarifSuccess());
     } catch (error) {
-        console.log(error);
+        postTarifError();
     }
 }
 

@@ -1,7 +1,6 @@
 .container {
     text-align: start;
     padding-left: 24px;
-   
 }
 :global .ant-layout-sider-trigger {
     box-shadow: 0px -1px 0 rgba(0, 0, 0, 0.15);
@@ -24,12 +23,12 @@
         display: none;
     }
     .container {
-      padding-left: 0;
-      display: flex;
-      justify-content: center;
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
     }
 
     :global .ant-layout-sider-trigger {
         position: relative;
-     }
+    }
 }
