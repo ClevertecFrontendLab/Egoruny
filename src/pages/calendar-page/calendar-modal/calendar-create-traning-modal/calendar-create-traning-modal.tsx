@@ -7,7 +7,8 @@ import EmtyContent from '@components/empy-content/empty-content';
 import TreningBadge from '@components/trening-bage/trening-bage';
 import { traningCatalogsSelect } from '@redux/slise/select';
 
-const CalendarCreateTraningModal = ({ date, setExercisesStatus, trenings, onChange,isPastDate }) => {
+
+const CalendarCreateTraningModal = ({ date, setExercisesStatus, trenings, onChange,isPastDate,setIsEdit }) => {
     const catalogTrening = useAppSelector(traningCatalogsSelect);
     const dispath = useAppDispatch();
     const closeModal = () => dispath(togleModal(false));
@@ -58,7 +59,7 @@ const CalendarCreateTraningModal = ({ date, setExercisesStatus, trenings, onChan
                     {!trenings.length ? (
                         <EmtyContent />
                     ) : (
-                        <TreningBadge isEdit={true} trainings={trenings} onChange={onChange} />
+                        <TreningBadge isEdit={true} trainings={trenings} onChange={onChange} setIsEdit={setIsEdit} />
                     )}
                 </div>
             </div>

@@ -16,18 +16,19 @@ import {
     updateErrorSelect,
     createErrorSelect,
     isOpenModalSelect,
-    prevDataSelect
+    prevDataSelect,
 } from '@redux/slise/select';
 import { togleModal, setPrevData, setModalStatus } from '@redux/slise/trening-modals-slice';
 import { CalendarModalStatus } from '@utils/constans/modal-status';
 import { resetCreatedTraining, setSelectedDate } from '@redux/slise/traningList-slise';
+import { putUpdateTreningError } from '@redux/slise/update-trening-slice';
+import { postCreateTreningError } from '@redux/slise/create-traning-slice';
 
 import RenderBage from '@components/render-bage/render-bage';
 import ClanedarNotVarificationModal from '../../pages/calendar-page/calendar-modal/calendar-not-varification-modal/calendar-not-varification-modal';
-import  PortalComponent  from '@components/portal/portal';
+import PortalComponent from '@components/portal/portal';
 
-
-import { getOffsetTop,getTrainingByDay } from '@utils/constans/traning';
+import { getOffsetTop, getTrainingByDay } from '@utils/constans/traning';
 
 import style from './calendar-content.module.css';
 
@@ -38,7 +39,6 @@ moment.updateLocale('ru', {
         dow: 1,
     },
 });
-
 
 const CalendarContent: React.FC = () => {
     const desctopVersion = useAppSelector(desctopVersionSelect);
@@ -56,8 +56,6 @@ const CalendarContent: React.FC = () => {
             ? dispatch(setDesctopVersion(true))
             : dispatch(setDesctopVersion(false));
     }, [dispatch, screenWidth]);
-
-
 
     const dateCellRender = (date: Moment) => {
         const getTraning = getTrainingByDay(date.toISOString(true), trenings);
@@ -89,14 +87,17 @@ const CalendarContent: React.FC = () => {
         }
     };
 
+    const resetUpdateError = () => dispatch(putUpdateTreningError(false));
+    const resetCreateError = () => dispatch(postCreateTreningError(false));
+
     const traningCatalogError = useAppSelector(traningCatalogsErrorSelect);
     const updateError = useAppSelector(updateErrorSelect);
     const createError = useAppSelector(createErrorSelect);
 
     return (
         <>
-            {createError && <ClanedarNotVarificationModal />}
-            {updateError && <ClanedarNotVarificationModal />}
+            {createError && <ClanedarNotVarificationModal onClose={resetCreateError} />}
+            {updateError && <ClanedarNotVarificationModal onClose={resetUpdateError} />}
             {traningCatalogError && <CalendarModal />}
             <ConfigProvider locale={ruRU}>
                 <Calendar
@@ -111,7 +112,6 @@ const CalendarContent: React.FC = () => {
                         container={activeDateModal}
                         date={dataModal}
                     />
-
                 )}
             </ConfigProvider>
         </>

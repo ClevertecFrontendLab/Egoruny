@@ -4,12 +4,12 @@
     width: 100%;
     top: 0;
     z-index: 2;
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
 }
 
 .header {
     width: 100%;
-    padding: 16px 12px ;
+    padding: 16px 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,11 +20,11 @@
 }
 
 .period {
-font-family: 'Inter';
-font-size: 16px;
-font-weight: 500;
-line-height: 20.8px;
-text-align: left;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20.8px;
+    text-align: left;
 }
 
 .exercises_wrapper {
@@ -41,7 +41,6 @@ text-align: left;
     display: flex;
     flex-direction: column;
     gap: 8px;
-
 }
 
 .exercise {
@@ -50,5 +49,5 @@ text-align: left;
 }
 
 .replays {
-    color:#2F54EB
+    color: #2f54eb;
 }

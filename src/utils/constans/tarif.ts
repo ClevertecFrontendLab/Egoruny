@@ -29,28 +29,28 @@ export const tarifsOpportunities = [
     },
 ];
 
- export const tariffOptions = [
+export const tariffOptions = [
     {
         text: 'Открыт для совместных тренировок',
         tooltip: 'включеная функция позволит участвовать в совместных тренировках',
         name: 'readyForJointTraining',
         availableInPro: false,
-        dataTestId:'tariff-trainings',
-        dataTestIdTooltip:'tariff-trainings-icon'
+        dataTestId: 'tariff-trainings',
+        dataTestIdTooltip: 'tariff-trainings-icon',
     },
     {
         text: 'Уведомления',
         tooltip: 'включеная функция позволит получать уведомления об активностях',
         name: 'sendNotification',
         availableInPro: false,
-        dataTestId:'tariff-notifications',
-        dataTestIdTooltip:'tariff-notifications-icon'
+        dataTestId: 'tariff-notifications',
+        dataTestIdTooltip: 'tariff-notifications-icon',
     },
     {
         text: 'Тёмная тема',
         tooltip: 'темная тема доступна для PRO tarif',
         availableInPro: true,
-        dataTestId:'tariff-theme',
-        dataTestIdTooltip:'tariff-theme-icon'
+        dataTestId: 'tariff-theme',
+        dataTestIdTooltip: 'tariff-theme-icon',
     },
 ];

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { Path } from '../utils/constans/url';
 import { setJwt } from '@redux/slise/auth-slise';
 import { useAppDispatch } from '@redux/configure-store';
-import Load from '../components/loader/loader';
 
 import MainPage from '../pages/main-page/main-page';
 import Auth from '@pages/auth-page/auth/auth';
@@ -25,25 +24,24 @@ import CalendarPage from '@pages/calendar-page/calendar-page';
 import ProfilePage from '@pages/profile-page/profile-page';
 import SettingsPage from '@pages/settings-page/settings-page';
 import MyTrningsPage from '@pages/my-trenings-page/my-trenings-page';
+import AchievementPage from '@pages/achievements-page/achievements-page';
 
 export const App = () => {
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
     const [serchParams] = useSearchParams();
     const accessToken = serchParams.get('accessToken');
-
 
     useEffect(() => {
         if (accessToken) {
             localStorage.setItem('jwt', accessToken);
-            dispatch(setJwt(accessToken))
+            dispatch(setJwt(accessToken));
         }
-    }, [accessToken,dispatch]);
+    }, [accessToken, dispatch]);
 
     return (
         <>
-            <Load />
             <Routes>
-            <Route path='*' element={<Auth tab='login' />} />
+                <Route path='*' element={<Auth tab='login' />} />
                 <Route path='/' element={<LayOut />}>
                     <Route index={true} element={<Navigate to={Path.Login} />} />
                     <Route path={Path.Login} element={<Auth tab='login' />} />
@@ -54,6 +52,7 @@ export const App = () => {
                         <Route path={Path.Profile} element={<ProfilePage />} />
                         <Route path={Path.Settings} element={<SettingsPage />} />
                         <Route path={Path.MyTrenings} element={<MyTrningsPage />} />
+                        <Route path={Path.Achievement} element={<AchievementPage />} />
                     </Route>
                     <Route element={<MainPage />}>
                         <Route path={Path.Feetbacks} element={<Feedbacks />} />
@@ -81,9 +80,7 @@ export const App = () => {
 
                 <Route path={Path.ConfirmEmail} element={<ConfirmEmail />} />
                 <Route path={Path.ChangePasword} element={<ChangePasword />} />
-                
             </Routes>
-
         </>
     );
 };

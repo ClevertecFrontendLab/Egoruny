@@ -29,7 +29,7 @@ const authSlise = createSlice({
         setConfirmPassword(state, action) {
             state.user.confirmPassword = action.payload;
         },
-        postLoginStart(state, action) {
+        postLoginStart(state) {
             state.isLogged = true;
             state.error = false;
         },
@@ -40,53 +40,53 @@ const authSlise = createSlice({
             state.error = true;
             state.isLogged = false;
         },
-        postRegistratonStart(state, action) {
+        postRegistratonStart(state) {
             state.isLogged = true;
             state.error = false;
         },
         postRegistratonSaccses(state) {
             state.isLogged = false;
         },
-        postRegistratonError(state, action) {
+        postRegistratonError(state) {
             state.error = true;
             state.isLogged = false;
         },
-        postFogorPsswordStart(state, action) {
+        postFogorPsswordStart(state) {
             state.isLogged = true;
             state.error = false;
         },
         postFogorPsswordSaccses(state) {
             state.isLogged = false;
         },
-        postFogorPsswordError(state, action) {
+        postFogorPsswordError(state) {
             state.error = true;
             state.isLogged = false;
         },
-        postConfirmEmailStart(state, action) {
+        postConfirmEmailStart(state) {
             state.isLogged = true;
             state.error = false;
         },
         postConfirmEmailSaccses(state) {
             state.isLogged = false;
         },
-        postConfirmEmailError(state, action) {
+        postConfirmEmailError(state) {
             state.error = true;
             state.isLogged = false;
         },
-        postChengePasswordStart(state, action) {
+        postChengePasswordStart(state) {
             state.isLogged = true;
             state.error = false;
         },
         postChengePasswordSaccses(state) {
             state.isLogged = false;
         },
-        postChengePasswordError(state, action) {
+        postChengePasswordError(state) {
             state.error = true;
             state.isLogged = false;
         },
         removeJwt(state) {
-            state.jwt = ''
-        }
+            state.jwt = '';
+        },
     },
 });
 

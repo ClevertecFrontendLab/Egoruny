@@ -1,39 +1,11 @@
-.ant-tabs > .ant-tabs-nav .ant-tabs-nav-operations-hidden{
-   display: none;
-   }
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-operations-hidden {
+    display: none;
+}
 
-   .ant-tabs > .ant-tabs-nav .ant-tabs-nav-more {
-      display: none;
-   }
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-more {
+    display: none;
+}
 
-/* .ant-tabs-top{
-   width: 100%; 
-   max-width: 368px;
-   } */
-   
-/* .ant-tabs-tab {
-      margin-left: 0;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-   }
-    */
-/* .ant-tabs-nav-list {
-   width: 100%;
-   }
-    */
 .ant-tabs-tab + .ant-tabs-tab {
-      margin-left: 0;
-   }
-   
-/* .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-   color:#2F54EB;
-   } */
-   
-/* .ant-tabs-ink-bar  {
-      background:#2F54EB;
-   }
-   
-.ant-tabs-tab:hover {
-      color:#2F54EB;
-   } */
+    margin-left: 0;
+}

@@ -1,6 +1,6 @@
 import CalendarCastomBage from '@components/calendar-castom-bage/calendar-castom-bage';
 
-const TreningBadge = ({ trainings, onChange, isEdit }) => {
+const TreningBadge = ({ trainings, onChange, isEdit,setIsEdit }) => {
     return (
         <ul
             style={{

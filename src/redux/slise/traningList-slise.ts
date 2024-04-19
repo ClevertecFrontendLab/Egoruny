@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { stat } from 'fs';
 
-const parameters= {
+
+const parameters = {
     repeat: false,
     period: null,
     jointTraining: false,
@@ -109,19 +109,26 @@ const traningListSlise = createSlice({
         resetCreatedTraining(state) {
             state.selectedTraning = initialTraining;
         },
-        setRepeat(state,action) {
-            state.selectedTraning.parameters.repeat = action.payload
+        setRepeat(state, action) {
+            state.selectedTraning.parameters.repeat = action.payload;
         },
-        setPeriod(state,action) {
-            state.selectedTraning.parameters.period = action.payload
+        setPeriod(state, action) {
+            state.selectedTraning.parameters.period = action.payload;
         },
-        setTreningDate(state,action) {
-            state.selectedTraning.date = action.payload
-        }
+        setTreningDate(state, action) {
+            state.selectedTraning.date = action.payload;
+        },
+        filtredExersise(state) {
+            const newExercisesArray = state.selectedTraning.exercises.filter(
+                (item) => item.name !== '',
+            );
+            state.selectedTraning.exercises = newExercisesArray;
+        },
     },
 });
 
 export const {
+    filtredExersise,
     setSelectedPrevTrain,
     setPrevState,
     addTrening,
@@ -142,7 +149,7 @@ export const {
     setExerciseReplays,
     setPeriod,
     setRepeat,
-    setTreningDate
+    setTreningDate,
 } = traningListSlise.actions;
 
 export default traningListSlise.reducer;

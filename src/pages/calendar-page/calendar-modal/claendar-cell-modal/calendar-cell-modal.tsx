@@ -1,5 +1,5 @@
 import { Typography, Button } from 'antd';
-import { PlusOutlined,  MinusOutlined } from '@ant-design/icons';
+import { PlusOutlined, MinusOutlined } from '@ant-design/icons';
 import CalendarCreateTraningModal from '../calendar-create-traning-modal/calendar-create-traning-modal';
 import CalendarExercisesModal from '../calendar-exercises-modal/calendar-exercises-modal';
 import DrawerInput from '@components/drawer-input/drawer-input';
@@ -12,30 +12,48 @@ import { setModalStatus } from '@redux/slise/trening-modals-slice';
 import { CalendarModalStatus } from '@utils/constans/modal-status';
 import { useAppSelector, useAppDispatch } from '@redux/configure-store';
 import { calendarModalStatusSelect } from '@redux/slise/select';
-import { setSelectedTraning, setSelectedPrevTrain } from '@redux/slise/traningList-slise';
-import { userTraningListSelect, selectedDateSelect,selectedTraningSelect,desctopVersionSelect } from '@redux/slise/select';
-import { createExercise,deleteExercises } from '@redux/slise/traningList-slise';
-
+import {
+    setSelectedTraning,
+    setSelectedPrevTrain,
+    resetCreatedTraining,
+} from '@redux/slise/traningList-slise';
+import {
+    userTraningListSelect,
+    selectedDateSelect,
+    selectedTraningSelect,
+    desctopVersionSelect,
+} from '@redux/slise/select';
+import { createExercise, deleteExercises, filtredExersise } from '@redux/slise/traningList-slise';
 
 import { getTrainingByDay } from '@utils/constans/traning';
 import style from './calendar-cell-modal.module.css';
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 const CalendarCellModal = ({ date, offsetTop }) => {
+    const [indexArray, setIndexeArray] = useState<number[]>([]);
+    const [isEdit, setIsEdit] = useState(false);
+    const [isOpenDrawer, setOpenDrawer] = useState(false);
+    const dispatch = useAppDispatch();
     const trenings = useAppSelector(userTraningListSelect);
     const dateSelected = useAppSelector(selectedDateSelect);
-    const [isOpenDrawer, setOpenDrawer] = useState(false);
-    const [isEdit, setIsEdit] = useState(false);
-    const dispatch = useAppDispatch();
+    const desctopVersion = useAppSelector(desctopVersionSelect);
     const modalStatus = useAppSelector(calendarModalStatusSelect);
-    const setExercisesStatus = () => dispatch(setModalStatus(CalendarModalStatus.EXERCISES));
-    const setTreningStatus = () => dispatch(setModalStatus(CalendarModalStatus.TRAINING));
     const trainingByDay = getTrainingByDay(date, trenings);
-    const cardRigth = moment(dateSelected).day() === 0 || moment(dateSelected).day() === 6;
     const pastDate = isPastDate(date);
     const selectetTain = useAppSelector(selectedTraningSelect);
-    const [indexArray, setIndexeArray] = useState<number[]>([]);
-    const desctopVersion = useAppSelector(desctopVersionSelect);
+    const cardRigth = moment(dateSelected).day() === 0 || moment(dateSelected).day() === 6;
+
+
+    const setExercisesStatus = () => {
+        setIsEdit(false);
+        dispatch(resetCreatedTraining());
+        dispatch(setModalStatus(CalendarModalStatus.EXERCISES));
+    };
+
+    const setTreningStatus = () => {
+        dispatch(resetCreatedTraining());
+        dispatch(setModalStatus(CalendarModalStatus.TRAINING));
+    };
 
     const onClick = () => dispatch(createExercise());
 
@@ -51,6 +69,7 @@ const CalendarCellModal = ({ date, offsetTop }) => {
     };
 
     const onChangeTrainingHandler = (name: string) => {
+        setIsEdit(true);
         const findedSelectTraning = trainingByDay.find((exercise) => exercise?.name === name);
         if (findedSelectTraning) {
             dispatch(setSelectedTraning(findedSelectTraning));
@@ -63,8 +82,15 @@ const CalendarCellModal = ({ date, offsetTop }) => {
         setOpenDrawer(true);
     };
     const closeDrawer = () => {
+        if (selectetTain.exercises.length === 1 && !selectetTain.exercises[0].name) {
+            dispatch(resetCreatedTraining());
+        } else if(selectetTain.exercises[0].name) {
+            dispatch(filtredExersise());
+        }
         setOpenDrawer(false);
     };
+
+
 
     const onChangeExercisesDrawerOpen = () => {
         setIsEdit(true);
@@ -78,6 +104,7 @@ const CalendarCellModal = ({ date, offsetTop }) => {
             >
                 {modalStatus === CalendarModalStatus.TRAINING && (
                     <CalendarCreateTraningModal
+                        setIsEdit={setIsEdit}
                         isPastDate={pastDate}
                         trenings={trainingByDay}
                         date={date}
@@ -87,6 +114,7 @@ const CalendarCellModal = ({ date, offsetTop }) => {
                 )}
                 {modalStatus === CalendarModalStatus.EXERCISES && (
                     <CalendarExercisesModal
+                        setIsEdit={setIsEdit}
                         trainings={trainingByDay}
                         isEdit={isEdit}
                         date={date}
@@ -99,7 +127,7 @@ const CalendarCellModal = ({ date, offsetTop }) => {
             </div>
             <CastomDrawer
                 closable={true}
-                title={isEdit?'Редактирование':'Добавление упражнений'}
+                title={isEdit ? 'Редактирование' : 'Добавление упражнений'}
                 open={isOpenDrawer}
                 onClose={closeDrawer}
                 date={date}
@@ -115,19 +143,21 @@ const CalendarCellModal = ({ date, offsetTop }) => {
                     </div>
                 </div>
                 <div className={style.inputs_drawer}>
-                    {selectetTain?.exercises?.map(({ name, approaches, weight, replays }, index) => (
-                        <DrawerInput
-                            key={index}
-                            indexArray={indexArray}
-                            checkBoxHadler={onSetIndexes}
-                            name={name}
-                            index={index}
-                            isEdit={isEdit}
-                            defaultValueApproaches={approaches}
-                            defaultValueWeight={weight}
-                            defaultValueReplays={replays}
-                        />
-                    ))}
+                    {selectetTain?.exercises?.map(
+                        ({ name, approaches, weight, replays }, index) => (
+                            <DrawerInput
+                                key={index}
+                                indexArray={indexArray}
+                                checkBoxHadler={onSetIndexes}
+                                name={name}
+                                index={index}
+                                isEdit={isEdit}
+                                defaultValueApproaches={approaches}
+                                defaultValueWeight={weight}
+                                defaultValueReplays={replays}
+                            />
+                        ),
+                    )}
                 </div>
                 <div className={style.btn_wrapper}>
                     <Button

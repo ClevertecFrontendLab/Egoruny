@@ -9,7 +9,7 @@ import style from './header.module.css';
 const { Title } = Typography;
 
 const Header: React.FC = () => {
-const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
     const onClickSettings = () => dispatch(getTariffsStart());
 

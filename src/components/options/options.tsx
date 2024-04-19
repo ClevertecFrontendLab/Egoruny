@@ -21,7 +21,10 @@ const Options = ({ isProVersion }) => {
             <Form onFieldsChange={onFieldsChange} initialValues={profile}>
                 <div className={style.container}>
                     {tariffOptions.map(
-                        ({ text, tooltip, name, availableInPro, dataTestId,dataTestIdTooltip }, index) => (
+                        (
+                            { text, tooltip, name, availableInPro, dataTestId, dataTestIdTooltip },
+                            index,
+                        ) => (
                             <SwithFields
                                 text={text}
                                 key={index}

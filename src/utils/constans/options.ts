@@ -1,4 +1,4 @@
-export  const PeriodOptions = [
+export const PeriodOptions = [
     { value: 1, label: 'Через 1 день' },
     { value: 2, label: 'Через 2 дня' },
     { value: 3, label: 'Через 3 дня' },
@@ -6,5 +6,4 @@ export  const PeriodOptions = [
     { value: 5, label: 'Через 5 дней' },
     { value: 6, label: 'Через 6 дней' },
     { value: 7, label: 'Раз в неделю' },
-
 ];

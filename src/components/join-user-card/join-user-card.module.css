@@ -1,6 +1,6 @@
 .user_card {
     width: 240px;
-    background: #F0F5FF;
+    background: #f0f5ff;
 }
 .user_info {
     display: flex;
@@ -12,10 +12,10 @@
 }
 
 .fullName > p {
-font-family: 'Inter';
-line-height: 18.2px;
-text-align: left;
-color: #262626;
+    font-family: 'Inter';
+    line-height: 18.2px;
+    text-align: left;
+    color: #262626;
 }
 
 .trening_type {
@@ -31,17 +31,24 @@ color: #262626;
 }
 
 .create_traning_btn {
-    background:#2F54EB;
+    background: #2f54eb;
 }
 
 .trening_status {
-font-family: 'Inter';
-font-size: 12px;
-font-weight: 400;
-line-height: 15.6px;
-text-align: left;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15.6px;
+    text-align: left;
 }
 
 .trening_status > span {
     margin-left: 8px;
+}
+
+
+@media (max-width: 480px) {
+    .user_card {
+        width: 100%;
+    }
 }

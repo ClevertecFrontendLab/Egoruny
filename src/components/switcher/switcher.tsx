@@ -14,9 +14,8 @@ const Switcher: React.FC<ChildProps> = ({ collapse, setCollapsed }) => {
     );
 
     const screenWidth = window.innerWidth;
- 
 
-   const dataTestId = screenWidth <= 360 ? 'sider-switch-mobile':'sider-switch'
+    const dataTestId = screenWidth <= 360 ? 'sider-switch-mobile' : 'sider-switch';
 
     const updatedSwitcherElement = React.cloneElement(switcherElement, {
         onClick: () => setCollapsed(!collapse),

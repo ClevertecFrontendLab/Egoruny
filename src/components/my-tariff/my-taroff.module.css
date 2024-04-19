@@ -15,18 +15,16 @@
     gap: 8px;
 }
 
-
-.card_btn{
-    color: #2F54EB;
+.card_btn {
+    color: #2f54eb;
 }
 
 .active_btn {
-    background:#2F54EB;
-    color:#fff;
+    background: #2f54eb;
+    color: #fff;
 }
 
-
-@media (max-width: 430px){
+@media (max-width: 430px) {
     .tarif_card {
         width: 100%;
     }

@@ -1,5 +1,6 @@
 import { RootState } from '@redux/configure-store';
 
+export const isLogedSelect = (state: RootState) => state.auth.isLogged
 export const desctopVersionSelect = (state: RootState) => state.app.desctopVersion;
 export const emailSelect = (state: RootState) => state.auth.user.login;
 export const jwtSelect = (state: RootState) => state.auth.jwt;
@@ -40,5 +41,11 @@ export const createMyTreningErrorSelect = (state: RootState) => state.createMyTr
 export const treningUserTypeSelect = (state: RootState) => state.joinTrening.treningType
 export const fetJoinUsersErrorSelect = (state: RootState) => state.joinTrening.isJoinsersError
 export const postInviteErrorSelect = (state: RootState) => state.invate.isInvateError
+export const createTraningLoad = (state: RootState) => state.createTraning.isLoad
+export const updateTraningLoad = (state: RootState) => state.updateTrening.isUpdateTraningLoad
+export const getMytreningsLoadSelect = (state: RootState) => state.myTrenings.isMyTreningsLoad
+export const getJointreningsLoadSelect = (state: RootState) => state.joinTrening.isJoinTreningLoad
+export const getAchivmetnLoadSelect = (state: RootState) => state.achievement.getAchievementTreningLoad
+export const getfeedbackLoadSelect = (state: RootState) => state.feedBack.isfeeedbacksLogged
 
 

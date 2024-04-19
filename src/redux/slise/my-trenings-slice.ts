@@ -24,10 +24,6 @@ const myTreningsSlice = createSlice({
     },
 });
 
-export const {
-    getTreningsStart,
-    getTreningsSuccess,
-    getTreningsError,
-} = myTreningsSlice.actions;
+export const { getTreningsStart, getTreningsSuccess, getTreningsError } = myTreningsSlice.actions;
 
 export default myTreningsSlice.reducer;

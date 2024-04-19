@@ -12,7 +12,6 @@ import ClanedarNotVarificationModal from '@pages/calendar-page/calendar-modal/ca
 
 import style from './profile-upload.module.css';
 
-
 type ProfileUploadProps = {
     imgSrc: string;
 };
@@ -30,18 +29,18 @@ const { Text } = Typography;
 const ProfileUpload = ({ imgSrc }: ProfileUploadProps) => {
     const token = useAppSelector(jwtSelect);
 
-
     const initialFile = {
         uid: '-2',
         name: 'image.jpg',
         url: imgSrc,
     };
-    const errorFile = [{
-        uid: '1',
-        status:'error',
-        name: 'image.jpg',
-    }]
-
+    const errorFile = [
+        {
+            uid: '1',
+            status: 'error',
+            name: 'image.jpg',
+        },
+    ];
 
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -71,13 +70,11 @@ const ProfileUpload = ({ imgSrc }: ProfileUploadProps) => {
     const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
         setFileList(newFileList);
         if (newFileList[0].error?.status === 409) {
-
-            newFileList[0].status === 'error'
+            newFileList[0].status === 'error';
             setFileList(errorFile);
             setIsBigFileError(true);
         } else {
             setIsBigFileError(false);
-        
         }
     };
 
@@ -130,7 +127,7 @@ const ProfileUpload = ({ imgSrc }: ProfileUploadProps) => {
                     accept='image/*'
                     progress={{ strokeWidth: 4, showInfo: false, size: 'default' }}
                 >
-                    {!shouldShowPreview  && uploadButton}
+                    {!shouldShowPreview && uploadButton}
                 </Upload>
             </Form.Item>
             <Modal

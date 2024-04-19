@@ -29,8 +29,8 @@ const UserComment: React.FC<FeedbackCommentProps> = ({
                     <>
                         <div className={style.avatar}>
                             <Avatar
-                            src={image}
-                                 icon={<UserOutlined />}
+                                src={image}
+                                icon={<UserOutlined />}
                                 style={{ color: '#262626', backgroundColor: '#ffffff' }}
                                 size={42}
                             />

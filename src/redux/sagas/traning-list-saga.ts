@@ -52,7 +52,7 @@ function* getTraningListWorker() {
         yield put(getTraningListSaccses());
         yield put(getTraningCatalogsStart());
     } catch (error) {
-        yield put(setModalError(true))
+        yield put(setModalError(true));
         yield put(getTraningListError());
     }
 }
@@ -83,7 +83,7 @@ function* postCreateTraningWorker() {
         yield put(setModalStatus(CalendarModalStatus.TRAINING));
     } catch (error) {
         yield put(togleModal(false));
-        yield put(postCreateTreningError());
+        yield put(postCreateTreningError(true));
         yield put(setModalStatus(CalendarModalStatus.TRAINING));
         yield put(resetCreatedTraining());
     }
@@ -109,7 +109,7 @@ function* putUpdateTraningWorker() {
     } catch (error) {
         yield put(togleModal(false));
         const pastDate = isPastDate(date);
-        yield put(putUpdateTreningError());
+        yield put(putUpdateTreningError(true));
         if (!pastDate) {
             yield put(setSelectedTraning(prev));
         }

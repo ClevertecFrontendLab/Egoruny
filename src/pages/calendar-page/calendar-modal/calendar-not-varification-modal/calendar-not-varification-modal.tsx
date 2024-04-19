@@ -8,14 +8,14 @@ const { Title, Text } = Typography;
 type ClanedarNotVarificationModalProps = {
     text?:string
     title?:string
-    onClose:() => void
+    onClose?:() => void
 }
 
 const ClanedarNotVarificationModal = ({ text, title,onClose }:ClanedarNotVarificationModalProps) => {
     const [canselModal, setCanselModal] = useState(true);
     const handleCansel = () => {
         setCanselModal(false);
-       
+
     }
     return (
         <Modal

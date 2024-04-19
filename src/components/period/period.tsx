@@ -3,8 +3,7 @@ import { EditOutlined } from '@ant-design/icons';
 import moment from 'moment';
 import style from './period.module.css';
 
-const Period = ({ key, trein, onClickBtn,index }) => {
-
+const Period = ({ key, trein, onClickBtn, index }) => {
     const periods = new Map([
         [1, 'Через 1 день'],
         [2, 'Через 2 дня'],
@@ -24,9 +23,7 @@ const Period = ({ key, trein, onClickBtn,index }) => {
             </span>
             <Button
                 data-test-id={`update-my-training-table-icon${index}`}
-                icon={
-                    <EditOutlined />
-                }
+                icon={<EditOutlined />}
                 disabled={trein?.isImplementation}
                 className={style.edit_btn}
                 onClick={() => onClickBtn(trein)}

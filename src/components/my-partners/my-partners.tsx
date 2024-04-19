@@ -11,13 +11,11 @@ const { Title, Text } = Typography;
 
 type MyPartnersProps = {
     activeModal?: boolean;
-    inviteList?:[]
+    inviteList?: [];
 };
 
-
-const MyPartners = ({ activeModal,inviteList }: MyPartnersProps) => {
+const MyPartners = ({ activeModal }: MyPartnersProps) => {
     const myTreningPartners = useAppSelector(treningPartnersSelect);
-    const [renderUsers,setrenderUsers] = useState(useAppSelector(treningPartnersSelect))
 
     return (
         <>
@@ -27,12 +25,12 @@ const MyPartners = ({ activeModal,inviteList }: MyPartnersProps) => {
                 </div>
                 <div className={style.partners}>
                     {myTreningPartners.length ? (
-                        (renderUsers.length?renderUsers:myTreningPartners).map(
-                            ({ imageSrc, name, avgWeightInWeek, trainingType,inviteId,id},index) => (
+                        myTreningPartners.map(
+                            (
+                                { imageSrc, name, avgWeightInWeek, trainingType, inviteId, id },
+                                index,
+                            ) => (
                                 <MyPartnersCard
-                                    userID={id}
-                                    myTreningPartners={renderUsers}
-                                    inviteList={inviteList}
                                     index={index}
                                     key={id}
                                     id={inviteId}
@@ -41,7 +39,6 @@ const MyPartners = ({ activeModal,inviteList }: MyPartnersProps) => {
                                     src={imageSrc}
                                     teningType={trainingType}
                                     avgWeightInWeek={avgWeightInWeek}
-                                    filteAr={setrenderUsers}
                                 />
                             ),
                         )

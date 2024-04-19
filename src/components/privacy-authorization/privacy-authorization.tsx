@@ -29,7 +29,7 @@ const PrivacyAuthorization = () => {
         const passStatus = passwordRegExp.test(passwordValue) ? '' : 'error';
         setPassStatus(passStatus);
     };
-   
+
     const validatePasswordConfirm = (event: React.ChangeEvent<HTMLInputElement>) => {
         const passwordValueConfirm = event.target.value;
         const comparePassworStatus = comparePassworValue === passwordValueConfirm ? '' : 'error';

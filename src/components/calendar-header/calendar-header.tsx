@@ -4,17 +4,15 @@ import { Link } from 'react-router-dom';
 import { getTariffsStart } from '@redux/slise/tariff-slice';
 import { useAppDispatch } from '@redux/configure-store';
 
-import style from './calendar-header.module.css'
+import style from './calendar-header.module.css';
 
 const CalendarHeader = () => {
     const dispath = useAppDispatch();
 
-    const onClick = () => dispath(getTariffsStart())
+    const onClick = () => dispath(getTariffsStart());
 
     return (
-        <PageHeader
-            style={{ padding: '4px 24px 16px 24px', background: '#f0f5ff' }}
-        >
+        <PageHeader style={{ padding: '4px 24px 16px 24px', background: '#f0f5ff' }}>
             <Breadcrumb>
                 <Breadcrumb.Item>
                     <Link to={'/main'}>Главная</Link>

@@ -39,18 +39,25 @@ const profileSlice = createSlice({
             state.isProfileError = false;
             state.isProfileLoad = true;
         },
-        putProfileSaccses(state) {
-            state.isProfileSaccses = true;
+        putProfileSaccses(state, action) {
+            state.isProfileSaccses = action.payload;
             state.isProfileLoad = false;
         },
-        putProfileError(state) {
+        putProfileError(state, action) {
             state.isProfileLoad = false;
-            state.isProfileError = true;
+            state.isProfileError = action.payload;
         },
     },
 });
 
-export const { getProfileStart, getProfileSaccses, setProfile, putProfileStart, getProfileError,putProfileError,putProfileSaccses } =
-    profileSlice.actions;
+export const {
+    getProfileStart,
+    getProfileSaccses,
+    setProfile,
+    putProfileStart,
+    getProfileError,
+    putProfileError,
+    putProfileSaccses,
+} = profileSlice.actions;
 
 export default profileSlice.reducer;

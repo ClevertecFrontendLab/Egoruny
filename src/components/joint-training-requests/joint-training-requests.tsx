@@ -27,12 +27,18 @@ const JointTraningRequests = ({ invateList }) => {
 
             {isShowBtn && (
                 <Button
-                className={style.show_all_btn}
+                    className={style.show_all_btn}
                     type='link'
                     onClick={!showAll ? showAllInvites : hideInvites}
-                    icon={showAll ? <UpOutlined style={{ fontSize: '12px' }}/> : <DownOutlined style={{ fontSize: '12px', paddingRight: '2px' }}/>}
+                    icon={
+                        showAll ? (
+                            <UpOutlined style={{ fontSize: '12px' }} />
+                        ) : (
+                            <DownOutlined style={{ fontSize: '12px', paddingRight: '2px' }} />
+                        )
+                    }
                 >
-                   {!showAll?'Показать все сообщения':' Скрыть все сообщения'}
+                    {!showAll ? 'Показать все сообщения' : ' Скрыть все сообщения'}
                 </Button>
             )}
         </div>

@@ -6,16 +6,17 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Load from '../../../components/loader/loader';
 import { passwordRegExp } from '@utils/constans/regExp';
-import { confirmPasswordSelect, passwordSelect } from '@redux/slise/select';
+import { confirmPasswordSelect, passwordSelect,isLogedSelect } from '@redux/slise/select';
 const { Title } = Typography;
 
 import style from './change-password.module.css';
 
 const ChangePasword = () => {
+    const isLoged = useAppSelector(isLogedSelect)
     const password = useAppSelector(passwordSelect);
     const confirmPassword = useAppSelector(confirmPasswordSelect);
     const [form] = Form.useForm();
-    const [formStatus, setFormStatus] = useState(false);
+    const [formStatus, setFormStatus] = useState(true);
     const [passStatus, setPassStatus] = useState<ValidateStatus>('success');
     const [ConfirmpassStatus, setConfirmPassStatus] = useState<ValidateStatus>('success');
     const dispatch = useAppDispatch();
@@ -30,9 +31,9 @@ const ChangePasword = () => {
 
     useEffect(() => {
         if (passStatus === '' && ConfirmpassStatus === '') {
-            setFormStatus(true);
-        } else {
             setFormStatus(false);
+        } else {
+            setFormStatus(true);
         }
     }, [passStatus, ConfirmpassStatus, form]);
 
@@ -58,7 +59,7 @@ const ChangePasword = () => {
 
     return (
         <div className={style.result_wrapper}>
-            <Load />
+            {isLoged && <Load />}
             <div className={style.result_wrapper_blur}>
                 <Layout className={style.error_login_wrpper}>
                     <Card className={style.card}>
@@ -118,6 +119,7 @@ const ChangePasword = () => {
                                 size='large'
                                 block
                                 className={style.button_save_password}
+                                disabled={formStatus}
                             >
                                 Сохранить
                             </Button>

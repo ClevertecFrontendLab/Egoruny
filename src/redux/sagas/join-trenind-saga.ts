@@ -1,9 +1,11 @@
 import { instance } from '../../axios/axsios';
 import { AxiosPaths } from '../../axios/axiosPaths';
 
-import { Path } from '../../utils/constans/url';
-import { push } from 'redux-first-history';
-import { jwtSelect, selectedTraningSelect, joinUsersContentSelect,treningUserTypeSelect } from '@redux/slise/select';
+
+import {
+    jwtSelect,
+    treningUserTypeSelect,
+} from '@redux/slise/select';
 import { call, put, takeLatest, select } from 'redux-saga/effects';
 
 import {
@@ -34,17 +36,17 @@ function* getJoinUsersWorker() {
     const headers = {
         Authorization: `Bearer ${jwt}`,
     };
-    const type = yield select(treningUserTypeSelect)
+    const type = yield select(treningUserTypeSelect);
 
-let url = ''
-    if(type){
-    url = `${AxiosPaths.USER_JOINT_TRAINING_LIST}?trainingType=${type}`
+    let url = '';
+    if (type) {
+        url = `${AxiosPaths.USER_JOINT_TRAINING_LIST}?trainingType=${type}`;
     } else {
-        url = AxiosPaths.USER_JOINT_TRAINING_LIST
+        url = AxiosPaths.USER_JOINT_TRAINING_LIST;
     }
-  
+
     try {
-        const { data } = yield call(instance.get,url, { headers });
+        const { data } = yield call(instance.get, url, { headers });
         yield put(getJoinUsersSusecc(data));
         yield put(showJoinUsersList(true));
     } catch (error) {

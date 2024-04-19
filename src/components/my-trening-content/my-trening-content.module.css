@@ -48,18 +48,9 @@
     background: red;
 }
 
-
 .table {
     max-width: 555px;
 }
-
-
-/* :global(.ant-table-tbody) {
-    :global(.ant-table-cell),
-    :global(.ant-btn) {
-        padding: 0 6px !important;
-    }
-} */
 
 .drawer_wrapper {
     display: flex;
@@ -79,17 +70,18 @@
     align-items: center;
 }
 
-.new_trin_btn, .footer_btn {
-  background:#2F54EB;
+.new_trin_btn,
+.footer_btn {
+    margin-top: 24px;
+    background: #2f54eb;
 }
 
 .add_execise {
     border: none;
     text-align: left;
-    background: #F0F0F0;
-    color:#2F54EB
+    background: #f0f0f0;
+    color: #2f54eb;
 }
-
 
 .castom_header {
     height: 37px;
@@ -105,7 +97,6 @@
     padding: 0 0 0 5px;
 }
 
-
 .add_btn {
-    color:#2F54EB;
+    color: #2f54eb;
 }

@@ -37,7 +37,7 @@ const SingIn = () => {
     const onFogotPassword = () => {
         const emailValue = form.getFieldValue('email');
         if (emailValue) {
-            dispatch(setLogin(form.getFieldValue('email')));
+            dispatch(setLogin(emailValue));
             dispatch(postFogorPsswordStart({ email: emailValue, location }));
         } else {
             setEmailStatus('error');
@@ -114,6 +114,7 @@ const SingIn = () => {
                         className={style.forgot_passowrd_btn}
                         style={{ height: '24px' }}
                         onClick={onFogotPassword}
+                        disabled={disabledForgorPass}
                     >
                         Забыли пароль?
                     </Button>

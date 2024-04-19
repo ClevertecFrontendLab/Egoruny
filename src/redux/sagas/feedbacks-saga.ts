@@ -14,7 +14,7 @@ import {
     postFeedbacksStart,
     postFeedbacksSaccses,
     postFeedbacksError,
-    postFeedbacksSettingsStart
+    postFeedbacksSettingsStart,
 } from '@redux/slise/post-feedbakc-slise';
 
 function* getFeedbacksWorker() {
@@ -43,7 +43,7 @@ function* postFeedbacksWorker({ payload: { message, rating } }) {
     try {
         const jwt: boolean | string = yield select(jwtSelect);
         const headers = {
-            Authorization: `Bearer ${jwt}`
+            Authorization: `Bearer ${jwt}`,
         };
         yield call(instance.post, AxiosPaths.FEEDBACK, { message, rating }, { headers });
         yield put(getFeedbacksStart());
@@ -53,12 +53,11 @@ function* postFeedbacksWorker({ payload: { message, rating } }) {
     }
 }
 
-
 function* postFeedbacksSettingsWorker({ payload: { message, rating } }) {
     try {
         const jwt: boolean | string = yield select(jwtSelect);
         const headers = {
-            Authorization: `Bearer ${jwt}`
+            Authorization: `Bearer ${jwt}`,
         };
         yield call(instance.post, AxiosPaths.FEEDBACK, { message, rating }, { headers });
         yield put(postFeedbacksSaccses());

@@ -33,6 +33,7 @@ const joinTreningSlice = createSlice({
             state.isJoinsersError = false;
         },
         getJoinUsersSusecc(state, action) {
+            state.isJoinTreningLoad = false;
             state.isJoinsersError = false;
             state.isPartnersSusecc = true;
             const sortUsers = action.payload.sort((a, b) => a.name.localeCompare(b.name));
@@ -51,10 +52,9 @@ const joinTreningSlice = createSlice({
         setTreningPartners(state, action) {
             state.treningPartners = action.payload;
         },
-        setjoingUsers(state,action) {
-            state.joinUsers = [action.payload]
-        }
-        
+        setjoingUsers(state, action) {
+            state.joinUsers = [action.payload];
+        },
     },
 });
 
@@ -68,7 +68,7 @@ export const {
     showJoinUsersList,
     setTraningType,
     setTreningPartners,
-    setjoingUsers
+    setjoingUsers,
 } = joinTreningSlice.actions;
 
 export default joinTreningSlice.reducer;

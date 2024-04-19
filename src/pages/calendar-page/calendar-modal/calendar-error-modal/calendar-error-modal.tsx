@@ -13,7 +13,7 @@ type CalendarModalProps ={
 
 
 
-const CalendarModal = ({updateHandler}) => {
+const CalendarModal = ({updateHandler}:CalendarModalProps) => {
     const [canselModal, setCanselModal] = useState(true);
     const dispath = useAppDispatch();
     

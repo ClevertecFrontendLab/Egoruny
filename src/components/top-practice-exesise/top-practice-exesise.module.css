@@ -1,0 +1,27 @@
+.wrapper {
+    max-width: 620px;
+    padding: 0 24px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.top_practice_exesise {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text {
+    max-width: 100px;
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 12px 0;
+        max-width: 100%;
+    }
+}
